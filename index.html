@@ -241,13 +241,13 @@
     <!-- Screen 1: Hook -->
     <div class="screen active" id="screen-0">
         <h1>Did you know you own Big Oil?</h1>
-        <p class="subhead">Norway's pension fund invests 126,000 kroner per Norwegian in energy companies like Shell, BP or Exxon. That's your money. And every year Norway votes — in your name, against climate.</p>
-        <button onclick="goToScreen(1)">Calculate your impact on the environment →</button>
+        <p class="subhead">Norway invests 126,000 kroner of YOUR money in Shell, BP, and Exxon. Every year, NBIM votes on climate resolutions — in your name. And almost every year, they vote NO.</p>
+        <button onclick="goToScreen(1)">Calculate your impact →</button>
     </div>
 
     <!-- Screen 2: Input -->
     <div class="screen" id="screen-1">
-        <h2>How many people live in your household?</h2>
+        <h2>How big is your family?</h2>
         <div class="household-buttons">
             <button class="household-btn" onclick="calculateImpact(1)">1</button>
             <button class="household-btn" onclick="calculateImpact(2)">2</button>
@@ -260,32 +260,33 @@
 
     <!-- Screen 3: Result -->
     <div class="screen" id="screen-2">
-        <p class="co2-amount">Your family finances <span id="co2-tonnes">0</span> tonnes of CO2 through your pension fund</p>
+        <p class="co2-amount">Your family finances <span id="co2-tonnes">0</span> tonnes of CO2 through Norway's pension fund</p>
         <h2>That's the same as:</h2>
         <div class="result-number" id="flights-counter">0</div>
         <h2>return flights Oslo–New York</h2>
-        <p class="subhead">Every. Single. Year.</p>
+        <p class="subhead">Every year. In your name. Without asking.</p>
         <p class="source-text">Based on NBIM portfolio emissions of 80 tonnes CO2 per Norwegian</p>
         <button onclick="goToScreen(3)" style="margin-top: 32px;">What can I do? →</button>
     </div>
 
     <!-- Screen 4: Pivot to Agency -->
     <div class="screen" id="screen-3">
-        <h2>But you can do something about it!</h2>
-        <p class="body-text">As a Norwegian, you're not just funding this. You're an owner. You have a vote in polluting companies like Shell, BP, and Exxon. Every year. Right now, NBIM (your pensionfund) often casts that vote against climate action. In your name. Without asking! </p>
+        <h2>But here's what they don't tell you:</h2>
+        <p class="body-text"> You're not just funding this. You're an owner. You have 126,000 kroner in voting rights. Every year. In Shell. In BP. In Exxon. Right now, NBIM uses YOUR votes against climate action. Without asking.
+What if you took them back? </p>
         <button onclick="goToScreen(4)">Claim your vote back→</button>
     </div>
 
     <!-- Screen 5: Petition Form -->
     <div class="screen" id="screen-4">
-        <h2>Tell Norway how YOUR money should vote. Ask NBIM to help the climate. </h2>
+        <h2>Claim your vote. Tell NBIM: Vote YES on climate. In MY name. </h2>
         <form class="form-container" onsubmit="handleSubmit(event)">
             <input type="text" id="name" placeholder="Name" required>
             <input type="email" id="email" placeholder="Email" required>
-            <input type="text" id="postcode" placeholder="Postcode (optional)">
-            <button type="submit">Sign the petition</button>
+            <input type="text" id="City" placeholder="City (optional)">
+            <button type="submit">I claim my vote</button>
         </form>
-        <p class="counter-text">Join <span id="signature-count">2,847</span> Norwegians who've claimed their vote. We will ask NBIM on your behalve to stop climate change </p>
+        <p class="counter-text">Join <span id="signature-count">2,847</span> Norwegians who've claimed their vote. That's 358.722.000 NOK in voting power — and counting. </p>
     </div>
 
     <!-- Screen 6: Thank You + Share -->
