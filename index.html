@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Did You Know You Own Big Oil?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 80px 20px 20px;
+            line-height: 1.6;
+        }
+
+        .progress-indicator {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #4ade80;
+            transform: scale(1.3);
+        }
+
+        .progress-dot.completed {
+            background: #22c55e;
+        }
+
+        .screen {
+            display: none;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .subhead {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .body-text {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 32px;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        button, .btn {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            color: #0f2027;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.4);
+        }
+
+        .household-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .household-btn {
+            width: 70px;
+            height: 70px;
+            font-size: 1.5rem;
+            border-radius: 50%;
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 12px;
+        }
+
+        .result-number {
+            font-size: clamp(4rem, 10vw, 6rem);
+            font-weight: 800;
+            color: #4ade80;
+            margin: 30px 0;
+            text-shadow: 0 0 30px rgba(74, 222, 128, 0.5);
+        }
+
+        .co2-amount {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 16px;
+            color: #fbbf24;
+        }
+
+        .source-text {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 32px;
+            font-style: italic;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        input {
+            padding: 14px;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+        }
+
+        .twitter-btn {
+            background: linear-gradient(135deg, #1da1f2 0%, #0c7abf 100%);
+            color: white;
+        }
+
+        .counter-text {
+            margin-top: 24px;
+            font-size: 1.1rem;
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .household-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-dot" data-screen="0"></div>
+        <div class="progress-dot" data-screen="1"></div>
+        <div class="progress-dot" data-screen="2"></div>
+        <div class="progress-dot" data-screen="3"></div>
+        <div class="progress-dot" data-screen="4"></div>
+        <div class="progress-dot" data-screen="5"></div>
+    </div>
+
+    <!-- Screen 1: Hook -->
+    <div class="screen active" id="screen-0">
+        <h1>Did you know you own Big Oil?</h1>
+        <p class="subhead">Norway's pension fund invests 126,000 kroner per Norwegian in fossil fuels. That's your money. And every year Norway votes — in your name, against climate.</p>
+        <button onclick="goToScreen(1)">Calculate your impact →</button>
+    </div>
+
+    <!-- Screen 2: Input -->
+    <div class="screen" id="screen-1">
+        <h2>How many people live in your household?</h2>
+        <div class="household-buttons">
+            <button class="household-btn" onclick="calculateImpact(1)">1</button>
+            <button class="household-btn" onclick="calculateImpact(2)">2</button>
+            <button class="household-btn" onclick="calculateImpact(3)">3</button>
+            <button class="household-btn" onclick="calculateImpact(4)">4</button>
+            <button class="household-btn" onclick="calculateImpact(5)">5+</button>
+        </div>
+        <p class="small-text">Including children</p>
+    </div>
+
+    <!-- Screen 3: Result -->
+    <div class="screen" id="screen-2">
+        <p class="co2-amount">Your family finances <span id="co2-tonnes">0</span> tonnes of CO2</p>
+        <div class="result-number" id="flights-counter">0</div>
+        <h2>return flights Oslo–New York</h2>
+        <p class="subhead">Every. Single. Year.</p>
+        <p class="source-text">Based on NBIM portfolio emissions of 80 tonnes CO2 per Norwegian</p>
+        <button onclick="goToScreen(3)" style="margin-top: 32px;">What can I do? →</button>
+    </div>
+
+    <!-- Screen 4: Pivot to Agency -->
+    <div class="screen" id="screen-3">
+        <h2>But here's what they don't tell you</h2>
+        <p class="body-text">As a Norwegian, you're not just funding this. You're an owner. You have a vote at Shell, BP, and Exxon. Every year. Right now, Norway casts that vote against climate action. In your name. Without asking.</p>
+        <button onclick="goToScreen(4)">Claim your vote →</button>
+    </div>
+
+    <!-- Screen 5: Petition Form -->
+    <div class="screen" id="screen-4">
+        <h2>Tell Norway how YOUR money should vote</h2>
+        <form class="form-container" onsubmit="handleSubmit(event)">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="postcode" placeholder="Postcode (optional)">
+            <button type="submit">Sign the petition</button>
+        </form>
+        <p class="counter-text">Join <span id="signature-count">2,847</span> Norwegians who've claimed their vote</p>
+    </div>
+
+    <!-- Screen 6: Thank You + Share -->
+    <div class="screen" id="screen-5">
+        <h2>You just claimed your vote</h2>
+        <p class="body-text">Now help others discover theirs.</p>
+        <div class="share-buttons">
+            <a href="#" class="btn share-btn whatsapp-btn" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
+            <a href="#" class="btn share-btn twitter-btn" id="twitter-share" target="_blank">Share on Twitter/X</a>
+        </div>
+        <p class="counter-text"><span id="final-count">2,848</span> Norwegians have signed</p>
+    </div>
+
+    <script>
+        // Constants
+        const CO2_PER_PERSON = 80.258;
+        const CO2_PER_FLIGHT = 2.1;
+
+        // State
+        let currentScreen = 0;
+        let householdSize = 0;
+        let totalCO2 = 0;
+        let flights = 0;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded');
+
+            // Check URL params for shared links
+            const params = new URLSearchParams(window.location.search);
+            const household = params.get('household');
+            const sharedFlights = params.get('flights');
+
+            if (household && sharedFlights) {
+                householdSize = parseInt(household);
+                flights = parseInt(sharedFlights);
+                totalCO2 = Math.round(CO2_PER_PERSON * householdSize);
+                goToScreen(2);
+                displayResults();
+            } else {
+                // Make sure first screen is visible
+                updateProgressDots(0);
+            }
+        });
+
+        function goToScreen(screenIndex) {
+            console.log('Going to screen:', screenIndex);
+
+            // Hide all screens
+            const allScreens = document.querySelectorAll('.screen');
+            allScreens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show the target screen
+            const targetScreen = document.getElementById('screen-' + screenIndex);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                console.log('Showing screen:', screenIndex);
+            } else {
+                console.error('Screen not found:', screenIndex);
+            }
+
+            // Update progress dots
+            updateProgressDots(screenIndex);
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            currentScreen = screenIndex;
+        }
+
+        function updateProgressDots(screenIndex) {
+            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index < screenIndex) {
+                    dot.classList.add('completed');
+                } else if (index === screenIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function calculateImpact(size) {
+            console.log('Calculating impact for household size:', size);
+
+            householdSize = size;
+            totalCO2 = CO2_PER_PERSON * householdSize;
+            flights = Math.round(totalCO2 / CO2_PER_FLIGHT);
+
+            console.log('Total CO2:', totalCO2, 'Flights:', flights);
+
+            goToScreen(2);
+
+            // Animate counter after a short delay
+            setTimeout(() => {
+                animateCounter();
+            }, 500);
+        }
+
+        function animateCounter() {
+            const counter = document.getElementById('flights-counter');
+            const co2Display = document.getElementById('co2-tonnes');
+            const duration = 2000;
+            const steps = 60;
+            const increment = flights / steps;
+            const co2Increment = totalCO2 / steps;
+            let current = 0;
+            let currentCO2 = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                currentCO2 += co2Increment;
+
+                if (current >= flights) {
+                    counter.textContent = Math.round(flights);
+                    co2Display.textContent = Math.round(totalCO2);
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.round(current);
+                    co2Display.textContent = Math.round(currentCO2);
+                }
+            }, duration / steps);
+        }
+
+        function displayResults() {
+            document.getElementById('flights-counter').textContent = flights;
+            document.getElementById('co2-tonnes').textContent = Math.round(totalCO2);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const postcode = document.getElementById('postcode').value;
+
+            console.log('Form submission:', { name, email, postcode, householdSize, flights });
+
+            // Update share links
+            setupShareLinks();
+
+            // Increment counter
+            const currentCount = parseInt(document.getElementById('signature-count').textContent.replace(/,/g, ''));
+            document.getElementById('final-count').textContent = (currentCount + 1).toLocaleString();
+
+            goToScreen(5);
+        }
+
+        function setupShareLinks() {
+            const baseUrl = window.location.origin + window.location.pathname;
+            const shareUrl = `${baseUrl}?household=${householdSize}&flights=${flights}`;
+
+            // WhatsApp
+            const whatsappText = `I just found out my family finances ${flights} flights worth of CO2 every year through Norway's fund. Without knowing. Check yours: ${shareUrl}`;
+            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+
+            // Twitter/X
+            const twitterText = `Norway's pension fund finances ${flights} Oslo-NY flights worth of CO2 in my name. Every year. And votes against climate. Find out yours: ${shareUrl}`;
+            document.getElementById('twitter-share').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
+        }
+    </script>
+</body>
+</html>
