@@ -142,8 +142,47 @@
             font-size: clamp(4rem, 10vw, 6rem);
             font-weight: 800;
             color: #4ade80;
-            margin: 30px 0;
+            margin: 30px 0 10px;
             text-shadow: 0 0 30px rgba(74, 222, 128, 0.5);
+        }
+
+        .flying-planes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            font-size: 1.8rem;
+            opacity: 0.9;
+        }
+
+        .plane {
+            display: inline-block;
+            animation: fly 3s ease-in-out infinite;
+        }
+
+        .plane:nth-child(1) { animation-delay: 0s; }
+        .plane:nth-child(2) { animation-delay: 0.5s; }
+        .plane:nth-child(3) { animation-delay: 1s; }
+        .plane:nth-child(4) { animation-delay: 1.5s; }
+        .plane:nth-child(5) { animation-delay: 2s; }
+
+        @keyframes fly {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translateY(-8px) translateX(5px);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-3px) translateX(10px);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateY(-10px) translateX(5px);
+                opacity: 1;
+            }
         }
 
         .co2-amount {
@@ -264,6 +303,13 @@
         <p class="co2-amount">Your family finances <span id="co2-tonnes">0</span> tonnes of CO2 through Norway's pension fund</p>
         <h2>That's the same as:</h2>
         <div class="result-number" id="flights-counter">0</div>
+        <div class="flying-planes">
+            <span class="plane">✈️</span>
+            <span class="plane">✈️</span>
+            <span class="plane">✈️</span>
+            <span class="plane">✈️</span>
+            <span class="plane">✈️</span>
+        </div>
         <h2>return flights Oslo–New York</h2>
         <p class="subhead">Every year. In your name. Without asking.</p>
         <p class="source-text">Based on NBIM portfolio emissions of 80 tonnes CO2 per Norwegian</p>
