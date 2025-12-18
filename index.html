@@ -236,6 +236,7 @@
         <div class="progress-dot" data-screen="3"></div>
         <div class="progress-dot" data-screen="4"></div>
         <div class="progress-dot" data-screen="5"></div>
+        <div class="progress-dot" data-screen="6"></div>
     </div>
 
     <!-- Screen 1: Hook -->
@@ -269,16 +270,25 @@
         <button onclick="goToScreen(3)" style="margin-top: 32px;">What can I do? →</button>
     </div>
 
-    <!-- Screen 4: Pivot to Agency -->
+    <!-- Screen 4: Skepticism / Shareholder Revolt -->
     <div class="screen" id="screen-3">
+        <h2>You're probably thinking: "So what? Nothing ever changes."</h2>
+        <p class="body-text">You're not wrong. Politicians talk. Corporations delay.</p>
+        <p class="body-text">But here's the thing: NBIM manages <strong>$1.7 trillion</strong>. When 100,000 Norwegians demand their vote, they can't ignore it.</p>
+        <p class="body-text" style="color: #4ade80; font-weight: 600;">This isn't a petition. It's a shareholder revolt.</p>
+        <button onclick="goToScreen(4)" style="margin-top: 32px;">Show me how →</button>
+    </div>
+
+    <!-- Screen 5: Pivot to Agency -->
+    <div class="screen" id="screen-4">
         <h2>But here's what they don't tell you:</h2>
         <p class="body-text"> You're not just funding this. You're an owner. You have 126,000 kroner in voting rights. Every year. In Shell. In BP. In Exxon. Right now, NBIM uses YOUR votes against climate action. Without asking.
 What if you took them back? </p>
-        <button onclick="goToScreen(4)">Claim your vote back→</button>
+        <button onclick="goToScreen(5)">Claim your vote back→</button>
     </div>
 
-    <!-- Screen 5: Petition Form -->
-    <div class="screen" id="screen-4">
+    <!-- Screen 6: Petition Form -->
+    <div class="screen" id="screen-5">
         <h2>Claim your vote. Tell NBIM: Vote YES on climate. In MY name. </h2>
         <form class="form-container" onsubmit="handleSubmit(event)">
             <input type="text" id="name" placeholder="Name" required>
@@ -289,8 +299,8 @@ What if you took them back? </p>
         <p class="counter-text">Join <span id="signature-count">2,847</span> Norwegians who've claimed their vote. That's 358.722.000 NOK in voting power — and counting. </p>
     </div>
 
-    <!-- Screen 6: Thank You + Share -->
-    <div class="screen" id="screen-5">
+    <!-- Screen 7: Thank You + Share -->
+    <div class="screen" id="screen-6">
         <h2>You just claimed your vote</h2>
         <p class="body-text">Now help others discover theirs.</p>
         <div class="share-buttons">
@@ -433,7 +443,7 @@ What if you took them back? </p>
             const currentCount = parseInt(document.getElementById('signature-count').textContent.replace(/,/g, ''));
             document.getElementById('final-count').textContent = (currentCount + 1).toLocaleString();
 
-            goToScreen(5);
+            goToScreen(6);
         }
 
         function setupShareLinks() {
