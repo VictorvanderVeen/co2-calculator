@@ -162,31 +162,35 @@
         }
 
         .plane svg {
-            width: 24px;
-            height: 24px;
-            fill: rgba(255, 255, 255, 0.5);
+            width: 32px;
+            height: 32px;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.5);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .plane:nth-child(1) {
             animation-duration: 8s;
             animation-delay: 0s;
-            top: 25%;
+            top: 20%;
         }
-        .plane:nth-child(1) svg { width: 22px; height: 22px; }
+        .plane:nth-child(1) svg { width: 30px; height: 30px; }
 
         .plane:nth-child(2) {
             animation-duration: 6s;
             animation-delay: -2s;
-            top: 55%;
+            top: 50%;
         }
-        .plane:nth-child(2) svg { width: 20px; height: 20px; fill: rgba(255, 255, 255, 0.4); }
+        .plane:nth-child(2) svg { width: 26px; height: 26px; stroke: rgba(255, 255, 255, 0.4); }
 
         .plane:nth-child(3) {
             animation-duration: 10s;
             animation-delay: -5s;
-            top: 75%;
+            top: 80%;
         }
-        .plane:nth-child(3) svg { width: 18px; height: 18px; fill: rgba(255, 255, 255, 0.35); }
+        .plane:nth-child(3) svg { width: 22px; height: 22px; stroke: rgba(255, 255, 255, 0.35); }
 
         @keyframes flyAcross {
             0% {
@@ -324,9 +328,9 @@
         <h2>That's the same as:</h2>
         <div class="result-number" id="flights-counter">0</div>
         <div class="flying-planes">
-            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
-            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
-            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0 0-3-2-6-2h-3l-2-4h-2l1 4H6L5 8H3l1 4-1 4h2l1-2h4l-1 4h2l2-4h3c3 0 6-2 6-2z"/></svg></span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0 0-3-2-6-2h-3l-2-4h-2l1 4H6L5 8H3l1 4-1 4h2l1-2h4l-1 4h2l2-4h3c3 0 6-2 6-2z"/></svg></span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0 0-3-2-6-2h-3l-2-4h-2l1 4H6L5 8H3l1 4-1 4h2l1-2h4l-1 4h2l2-4h3c3 0 6-2 6-2z"/></svg></span>
         </div>
         <h2>return flights Oslo–New York</h2>
         <p class="subhead">Every year. In your name. Without asking.</p>
