@@ -147,41 +147,61 @@
         }
 
         .flying-planes {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
-            font-size: 1.8rem;
-            opacity: 0.9;
+            position: relative;
+            width: 100%;
+            height: 40px;
+            margin: 10px 0;
+            overflow: hidden;
         }
 
         .plane {
-            display: inline-block;
-            animation: fly 3s ease-in-out infinite;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: flyAcross linear infinite;
         }
 
-        .plane:nth-child(1) { animation-delay: 0s; }
-        .plane:nth-child(2) { animation-delay: 0.5s; }
-        .plane:nth-child(3) { animation-delay: 1s; }
-        .plane:nth-child(4) { animation-delay: 1.5s; }
-        .plane:nth-child(5) { animation-delay: 2s; }
+        .plane svg {
+            width: 24px;
+            height: 24px;
+            fill: rgba(255, 255, 255, 0.5);
+        }
 
-        @keyframes fly {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.7;
+        .plane:nth-child(1) {
+            animation-duration: 8s;
+            animation-delay: 0s;
+            top: 25%;
+        }
+        .plane:nth-child(1) svg { width: 22px; height: 22px; }
+
+        .plane:nth-child(2) {
+            animation-duration: 6s;
+            animation-delay: -2s;
+            top: 55%;
+        }
+        .plane:nth-child(2) svg { width: 20px; height: 20px; fill: rgba(255, 255, 255, 0.4); }
+
+        .plane:nth-child(3) {
+            animation-duration: 10s;
+            animation-delay: -5s;
+            top: 75%;
+        }
+        .plane:nth-child(3) svg { width: 18px; height: 18px; fill: rgba(255, 255, 255, 0.35); }
+
+        @keyframes flyAcross {
+            0% {
+                left: -30px;
+                opacity: 0;
             }
-            25% {
-                transform: translateY(-8px) translateX(5px);
+            10% {
                 opacity: 1;
             }
-            50% {
-                transform: translateY(-3px) translateX(10px);
-                opacity: 0.9;
-            }
-            75% {
-                transform: translateY(-10px) translateX(5px);
+            90% {
                 opacity: 1;
+            }
+            100% {
+                left: calc(100% + 30px);
+                opacity: 0;
             }
         }
 
@@ -304,11 +324,9 @@
         <h2>That's the same as:</h2>
         <div class="result-number" id="flights-counter">0</div>
         <div class="flying-planes">
-            <span class="plane">✈️</span>
-            <span class="plane">✈️</span>
-            <span class="plane">✈️</span>
-            <span class="plane">✈️</span>
-            <span class="plane">✈️</span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
+            <span class="plane"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></span>
         </div>
         <h2>return flights Oslo–New York</h2>
         <p class="subhead">Every year. In your name. Without asking.</p>
