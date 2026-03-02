@@ -384,7 +384,7 @@
     <div class="screen" id="screen-3">
         <h2>You're probably thinking: "So what? Nothing ever changes."</h2>
         <p class="body-text">You're not wrong. Politicians talk. Corporations delay.</p>
-        <p class="body-text">But here's the thing: NBIM manages <strong>$70,082 billion</strong>. When 100,000 Norwegians demand their vote, they can't ignore it.</p>
+        <p class="body-text">But here's the thing: NBIM manages <strong>$700 billion</strong>. When 100,000 Norwegians demand their vote, they can't ignore it.</p>
         <p class="body-text" style="color: #4ade80; font-weight: 600;">This isn't a petition. It's a shareholder revolt.</p>
         <button onclick="goToScreen(4)" style="margin-top: 32px;">Show me how →</button>
     </div>
@@ -403,10 +403,10 @@ What if you took them back? </p>
         <form class="form-container" onsubmit="handleSubmit(event)">
             <input type="text" id="name" placeholder="Name" required>
             <input type="email" id="email" placeholder="Email" required>
-            <input type="text" id="City" placeholder="City (optional)">
+            <input type="text" id="city" placeholder="City (optional)">
             <button type="submit">I claim my vote</button>
         </form>
-        <p class="counter-text">Join <span id="signature-count">2,847</span> Norwegians who've claimed their vote. That's 358.722.000 NOK in voting power — and counting. </p>
+        <p class="counter-text">Join <span class="js-sig-count">2,847</span> Norwegians who've claimed their vote. That's <span class="js-nok-power">358,722,000</span> NOK in voting power — and counting. </p>
     </div>
 
     <!-- Screen 7: Thank You + Share -->
@@ -417,25 +417,28 @@ What if you took them back? </p>
             <a href="#" class="btn share-btn whatsapp-btn" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
             <a href="#" class="btn share-btn twitter-btn" id="twitter-share" target="_blank">Share on Twitter/X</a>
         </div>
-        <p class="counter-text"><span id="final-count">2,848</span> Norwegians have signed</p>
+        <p class="counter-text"><span class="js-sig-count">2,848</span> Norwegians have signed</p>
     </div>
 
     <script>
-        // Constants
+        // ─── CONFIG ────────────────────────────────────────────────────────────────
+        // Paste your Google Apps Script Web App URL here after setup:
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzVQNC2LS2K35SzWJLwiaoTNeJKOIl6lrW8fs8rNHeGctFlq2x0hhHUxf3sNdLcUyBh/exec';
+        // ───────────────────────────────────────────────────────────────────────────
+
         const CO2_PER_PERSON = 80.258;
         const CO2_PER_FLIGHT = 2.1;
 
-        // State
         let currentScreen = 0;
         let householdSize = 0;
         let totalCO2 = 0;
         let flights = 0;
+        let signatureCount = 2847;
 
-        // Initialize on page load
+        // ─── INIT ──────────────────────────────────────────────────────────────────
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Page loaded');
+            fetchSignatureCount();
 
-            // Check URL params for shared links
             const params = new URLSearchParams(window.location.search);
             const household = params.get('household');
             const sharedFlights = params.get('flights');
@@ -447,64 +450,55 @@ What if you took them back? </p>
                 goToScreen(2);
                 displayResults();
             } else {
-                // Make sure first screen is visible
                 updateProgressDots(0);
             }
         });
 
+        // ─── LIVE COUNTER ──────────────────────────────────────────────────────────
+        async function fetchSignatureCount() {
+            if (SHEET_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+            try {
+                const res = await fetch(SHEET_URL + '?action=count');
+                const data = await res.json();
+                if (data.count) {
+                    signatureCount = data.count;
+                    updateCounterDisplays();
+                }
+            } catch(e) { /* keep default */ }
+        }
+
+        function updateCounterDisplays() {
+            const fmt = signatureCount.toLocaleString('nb-NO');
+            const nok = (signatureCount * 126000).toLocaleString('nb-NO');
+            document.querySelectorAll('.js-sig-count').forEach(el => el.textContent = fmt);
+            document.querySelectorAll('.js-nok-power').forEach(el => el.textContent = nok);
+        }
+
+        // ─── NAVIGATION ────────────────────────────────────────────────────────────
         function goToScreen(screenIndex) {
-            console.log('Going to screen:', screenIndex);
-
-            // Hide all screens
-            const allScreens = document.querySelectorAll('.screen');
-            allScreens.forEach(screen => {
-                screen.classList.remove('active');
-            });
-
-            // Show the target screen
-            const targetScreen = document.getElementById('screen-' + screenIndex);
-            if (targetScreen) {
-                targetScreen.classList.add('active');
-                console.log('Showing screen:', screenIndex);
-            } else {
-                console.error('Screen not found:', screenIndex);
-            }
-
-            // Update progress dots
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('screen-' + screenIndex);
+            if (target) target.classList.add('active');
             updateProgressDots(screenIndex);
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             currentScreen = screenIndex;
         }
 
         function updateProgressDots(screenIndex) {
             document.querySelectorAll('.progress-dot').forEach((dot, index) => {
                 dot.classList.remove('active', 'completed');
-                if (index < screenIndex) {
-                    dot.classList.add('completed');
-                } else if (index === screenIndex) {
-                    dot.classList.add('active');
-                }
+                if (index < screenIndex) dot.classList.add('completed');
+                else if (index === screenIndex) dot.classList.add('active');
             });
         }
 
+        // ─── CALCULATOR ────────────────────────────────────────────────────────────
         function calculateImpact(size) {
-            console.log('Calculating impact for household size:', size);
-
             householdSize = size;
             totalCO2 = CO2_PER_PERSON * householdSize;
             flights = Math.round(totalCO2 / CO2_PER_FLIGHT);
-
-            console.log('Total CO2:', totalCO2, 'Flights:', flights);
-
             goToScreen(2);
-
-            // Animate counter after a short delay
-            setTimeout(() => {
-                animateCounter();
-            }, 500);
+            setTimeout(animateCounter, 500);
         }
 
         function animateCounter() {
@@ -512,22 +506,20 @@ What if you took them back? </p>
             const co2Display = document.getElementById('co2-tonnes');
             const duration = 2000;
             const steps = 60;
-            const increment = flights / steps;
-            const co2Increment = totalCO2 / steps;
-            let current = 0;
-            let currentCO2 = 0;
+            const incFlights = flights / steps;
+            const incCO2 = totalCO2 / steps;
+            let cur = 0, curCO2 = 0;
 
             const timer = setInterval(() => {
-                current += increment;
-                currentCO2 += co2Increment;
-
-                if (current >= flights) {
+                cur += incFlights;
+                curCO2 += incCO2;
+                if (cur >= flights) {
                     counter.textContent = Math.round(flights);
                     co2Display.textContent = Math.round(totalCO2);
                     clearInterval(timer);
                 } else {
-                    counter.textContent = Math.round(current);
-                    co2Display.textContent = Math.round(currentCO2);
+                    counter.textContent = Math.round(cur);
+                    co2Display.textContent = Math.round(curCO2);
                 }
             }, duration / steps);
         }
@@ -537,35 +529,50 @@ What if you took them back? </p>
             document.getElementById('co2-tonnes').textContent = Math.round(totalCO2);
         }
 
-        function handleSubmit(event) {
+        // ─── FORM SUBMIT → GOOGLE SHEETS ──────────────────────────────────────────
+        async function handleSubmit(event) {
             event.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const city = document.getElementById('City').value;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Signing...';
+            submitBtn.disabled = true;
 
-            console.log('Form submission:', { name, email, city, householdSize, flights });
+            const payload = {
+                name:      document.getElementById('name').value,
+                email:     document.getElementById('email').value,
+                city:      document.getElementById('city').value,
+                household: householdSize,
+                flights:   flights,
+                timestamp: new Date().toISOString()
+            };
 
-            // Update share links
+            // Send to Google Sheets (fire and forget — don't block UX)
+            if (SHEET_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+                fetch(SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(() => {}); // Silently fail — submission already happened UX-wise
+            }
+
+            // Update counter optimistically
+            signatureCount += 1;
+            updateCounterDisplays();
+
             setupShareLinks();
-
-            // Increment counter
-            const currentCount = parseInt(document.getElementById('signature-count').textContent.replace(/,/g, ''));
-            document.getElementById('final-count').textContent = (currentCount + 1).toLocaleString();
-
             goToScreen(6);
         }
 
+        // ─── SHARE LINKS ───────────────────────────────────────────────────────────
         function setupShareLinks() {
             const baseUrl = window.location.origin + window.location.pathname;
             const shareUrl = `${baseUrl}?household=${householdSize}&flights=${flights}`;
 
-            // WhatsApp
-            const whatsappText = `I just found out my family finances ${flights} flights worth of CO2 every year through Norway's fund. Without knowing. Check yours: ${shareUrl}`;
+            const whatsappText = `Wist je dit? Mijn gezin financiert ${flights} vluchten CO2 per jaar via het Noors pensioenfonds. Zonder dat we het wisten. Check jouw cijfer: ${shareUrl}`;
             document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
 
-            // Twitter/X
-            const twitterText = `Norway's pension fund finances ${flights} Oslo-NY flights worth of CO2 in my name. Every year. And votes against climate. Find out yours: ${shareUrl}`;
+            const twitterText = `Norway's pension fund finances ${flights} Oslo–NY flights worth of CO2 in my name. Every year. And votes against climate. Find out yours: ${shareUrl} #FollowThis`;
             document.getElementById('twitter-share').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
         }
     </script>
