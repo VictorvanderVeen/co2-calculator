@@ -443,15 +443,8 @@
             const household = params.get('household');
             const sharedFlights = params.get('flights');
 
-            if (household && sharedFlights) {
-                householdSize = parseInt(household);
-                flights = parseInt(sharedFlights);
-                totalCO2 = Math.round(CO2_PER_PERSON * householdSize);
-                goToScreen(2);
-                displayResults();
-            } else {
-                updateProgressDots(0);
-            }
+            // Shared links always start at the first screen
+            updateProgressDots(0);
         });
 
         // ─── LIVE COUNTER ──────────────────────────────────────────────────────────
