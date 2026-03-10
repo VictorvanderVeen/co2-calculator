@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Did You Know You Own Big Oil?</title>
+    <title>Oljefondet</title>
+    <meta property="og:title" content="Did you know you own Big Oil?">
+    <meta property="og:description" content="Norway's pension fund finances CO2 emissions in your name. Every year. Without asking. Calculate your impact now.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta name="description" content="Norway's pension fund finances CO2 emissions in your name. Every year. Without asking. Calculate your impact now.">
     <style>
         * {
             margin: 0;
@@ -309,9 +314,38 @@
             color: white;
         }
 
-        .twitter-btn {
-            background: linear-gradient(135deg, #1da1f2 0%, #0c7abf 100%);
+        .linkedin-btn {
+            background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
             color: white;
+        }
+
+        .email-btn {
+            background: linear-gradient(135deg, #666 0%, #444 100%);
+            color: white;
+        }
+
+        .share-text-box {
+            background: #f5f5f5;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0 12px;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .copy-btn:hover {
+            box-shadow: 0 6px 30px rgba(124, 58, 237, 0.4);
         }
 
         .counter-text {
@@ -345,8 +379,8 @@
     <!-- Screen 1: Hook -->
     <div class="screen active" id="screen-0">
         <h1>Did you know you own Big Oil?</h1>
-        <p class="subhead">Norway invests 126,000 kroner of YOUR money.<br>In Shell. In BP. In Exxon.<br>Every year, NBIM votes on climate — in your name.<br>Every year, they vote NO.</p>
-        <button onclick="goToScreen(1)">Calculate your impact →</button>
+        <p class="subhead">Norway (through Oljefondet) invests 75,000 kroner of YOUR money.<br>In Shell. In BP. In Exxon.<br>Every year, at shareholder meetings, NBIM votes on climate.<br>Every year, they vote NO.<br>— in your name!</p>
+        <button onclick="goToScreen(1)">CALCULATE YOUR IMPACT NOW →</button>
     </div>
 
     <!-- Screen 2: Input -->
@@ -378,46 +412,50 @@
         <h2>return flights Oslo–New York</h2>
         <p class="subhead">Every year. In your name. Without asking.</p>
         <p class="source-text">Based on NBIM portfolio emissions of 80 tonnes CO2 per Norwegian</p>
-        <button onclick="goToScreen(3)" style="margin-top: 32px;">What can I do? →</button>
+        <button onclick="goToScreen(3)" style="margin-top: 32px;">WHAT CAN I DO? →</button>
     </div>
 
     <!-- Screen 4: Skepticism / Shareholder Revolt -->
     <div class="screen" id="screen-3">
         <h2>You're probably thinking: "So what? Nothing ever changes."</h2>
         <p class="body-text">You're not wrong. Politicians talk. Corporations delay.</p>
-        <p class="body-text">NBIM manages <strong>$70 billion</strong>. When 100,000 Norwegians demand their vote, they can't ignore it.</p>
+        <p class="body-text">NBIM manages <strong>$42 billion in the energy sector</strong>. When thousands of Norwegians demand their vote, they can't ignore it.</p>
         <p class="body-text" style="color: #4ade80; font-weight: 600;">This isn't a petition. It's a shareholder revolt.</p>
-        <button onclick="goToScreen(4)" style="margin-top: 32px;">Show me how →</button>
+        <button onclick="goToScreen(4)" style="margin-top: 32px;">SHOW ME HOW →</button>
     </div>
 
     <!-- Screen 5: Pivot to Agency -->
     <div class="screen" id="screen-4">
         <h2>But here's what they don't tell you:</h2>
-        <p class="body-text">You're not just funding this. You're an owner.<br>126,000 kroner. In Shell. In BP. In Exxon.<br>NBIM uses YOUR votes against climate action.<br>Every year. Without asking.<br>What if you took them back?</p>
-        <button onclick="goToScreen(5)">Claim your vote back→</button>
+        <p class="body-text">You're not just funding this. You're an owner.<br>75,000 kroner. In Shell. In BP. In Exxon.<br>NBIM uses YOUR votes against climate action.<br>Every year. Without asking.<br>What if you took them back?</p>
+        <button onclick="goToScreen(5)">CLAIM YOUR VOTE BACK →</button>
     </div>
 
     <!-- Screen 6: Petition Form -->
     <div class="screen" id="screen-5">
         <h2>Claim your vote. Tell NBIM: Vote YES on climate. In MY name. </h2>
         <form class="form-container" onsubmit="handleSubmit(event)">
-            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
             <input type="email" id="email" placeholder="Email" required>
             <input type="text" id="city" placeholder="City (optional)">
-            <button type="submit">I claim my vote</button>
+            <button type="submit">CLAIM MY VOTE!</button>
         </form>
-        <p class="counter-text">Join <span class="js-sig-count">2,847</span> Norwegians who've claimed their vote. That's <span class="js-nok-power">358,722,000</span> NOK in voting power — and counting. </p>
+        <p class="counter-text">Join <span class="js-sig-count">7</span> Norwegians who've claimed their vote. That's <span class="js-nok-power">882,000</span> NOK in voting power — and counting.</p>
     </div>
 
     <!-- Screen 7: Thank You + Share -->
     <div class="screen" id="screen-6">
         <h2>You just claimed your vote</h2>
-        <p class="body-text">Now help others discover theirs.</p>
+        <p class="body-text">Now help others discover theirs. Copy the text below and share it!</p>
+        <div class="share-text-box" id="share-text-box"></div>
+        <button class="copy-btn" onclick="copyShareText()">COPY TEXT</button>
         <div class="share-buttons">
             <a href="#" class="btn share-btn whatsapp-btn" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
-            <a href="#" class="btn share-btn twitter-btn" id="twitter-share" target="_blank">Share on Twitter/X</a>
+            <a href="#" class="btn share-btn linkedin-btn" id="linkedin-share" target="_blank">Share on LinkedIn</a>
+            <a href="#" class="btn share-btn email-btn" id="email-share">Share via Email</a>
         </div>
-        <p class="counter-text"><span class="js-sig-count">2,848</span> Norwegians have signed</p>
+        <p class="counter-text"><span class="js-sig-count">8</span> Norwegians have signed</p>
     </div>
 
     <script>
@@ -433,7 +471,7 @@
         let householdSize = 0;
         let totalCO2 = 0;
         let flights = 0;
-        let signatureCount = 2847;
+        let signatureCount = 7;
 
         // ─── INIT ──────────────────────────────────────────────────────────────────
         document.addEventListener('DOMContentLoaded', function() {
@@ -531,7 +569,7 @@
             submitBtn.disabled = true;
 
             const payload = {
-                name:      document.getElementById('name').value,
+                name:      document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
                 email:     document.getElementById('email').value,
                 city:      document.getElementById('city').value,
                 household: householdSize,
@@ -558,15 +596,33 @@
         }
 
         // ─── SHARE LINKS ───────────────────────────────────────────────────────────
+        function getShareText() {
+            const baseUrl = window.location.origin + window.location.pathname;
+            const shareUrl = `${baseUrl}?household=${householdSize}&flights=${flights}`;
+            return `Did you know? Norway's pension fund finances ${flights} return flights Oslo–New York worth of CO2 — in my family's name. Every year. Without asking.\n\nCalculate your impact: ${shareUrl}`;
+        }
+
         function setupShareLinks() {
+            const shareText = getShareText();
             const baseUrl = window.location.origin + window.location.pathname;
             const shareUrl = `${baseUrl}?household=${householdSize}&flights=${flights}`;
 
-            const whatsappText = `Wist je dit? Mijn gezin financiert ${flights} vluchten CO2 per jaar via het Noors pensioenfonds. Zonder dat we het wisten. Check jouw cijfer: ${shareUrl}`;
-            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+            document.getElementById('share-text-box').textContent = shareText;
 
-            const twitterText = `Norway's pension fund finances ${flights} Oslo–NY flights worth of CO2 in my name. Every year. And votes against climate. Find out yours: ${shareUrl} #FollowThis`;
-            document.getElementById('twitter-share').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}`;
+            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            document.getElementById('linkedin-share').href = `https://www.linkedin.com/feed/?shareActive=true`;
+
+            const subject = 'Did you know you own Big Oil?';
+            document.getElementById('email-share').href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(shareText)}`;
+        }
+
+        function copyShareText() {
+            const text = getShareText();
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'COPIED!';
+                setTimeout(() => { btn.textContent = 'COPY TEXT'; }, 2000);
+            });
         }
     </script>
 </body>
