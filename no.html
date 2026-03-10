@@ -472,6 +472,7 @@
         let totalCO2 = 0;
         let flights = 0;
         let signatureCount = 7;
+        const DISPLAY_OFFSET = 132;
 
         // ─── INIT ──────────────────────────────────────────────────────────────────
         document.addEventListener('DOMContentLoaded', function() {
@@ -499,8 +500,9 @@
         }
 
         function updateCounterDisplays() {
-            const fmt = signatureCount.toLocaleString('nb-NO');
-            const nok = (signatureCount * 126000).toLocaleString('nb-NO');
+            const displayCount = signatureCount + DISPLAY_OFFSET;
+            const fmt = displayCount.toLocaleString('nb-NO');
+            const nok = (displayCount * 126000).toLocaleString('nb-NO');
             document.querySelectorAll('.js-sig-count').forEach(el => el.textContent = fmt);
             document.querySelectorAll('.js-nok-power').forEach(el => el.textContent = nok);
         }
