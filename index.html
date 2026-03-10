@@ -13,8 +13,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            color: #ffffff;
+            background: #ffffff;
+            color: #1a1a1a;
             min-height: 100vh;
             padding: 80px 20px 20px;
             line-height: 1.6;
@@ -34,7 +34,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -88,20 +88,20 @@
         .subhead {
             font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             margin-bottom: 40px;
-            opacity: 0.9;
+            color: #333;
             line-height: 1.5;
         }
 
         .body-text {
             font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 32px;
-            opacity: 0.85;
+            color: #444;
             line-height: 1.7;
         }
 
         button, .btn {
-            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
-            color: #0f2027;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
             border: none;
             padding: 16px 32px;
             font-size: 1.1rem;
@@ -109,12 +109,12 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
+            box-shadow: 0 4px 20px rgba(22, 163, 74, 0.3);
         }
 
         button:hover, .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.4);
+            box-shadow: 0 6px 30px rgba(22, 163, 74, 0.4);
         }
 
         .household-buttons {
@@ -134,16 +134,16 @@
 
         .small-text {
             font-size: 0.9rem;
-            opacity: 0.7;
+            color: #777;
             margin-top: 12px;
         }
 
         .result-number {
             font-size: clamp(4rem, 10vw, 6rem);
             font-weight: 800;
-            color: #4ade80;
+            color: #16a34a;
             margin: 30px 0 10px;
-            text-shadow: 0 0 30px rgba(74, 222, 128, 0.5);
+            text-shadow: none;
         }
 
         .flying-planes {
@@ -165,7 +165,7 @@
             width: 32px;
             height: 32px;
             fill: none;
-            stroke: rgba(255, 255, 255, 0.5);
+            stroke: rgba(22, 163, 74, 0.6);
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -183,14 +183,14 @@
             animation-delay: -2s;
             top: 50%;
         }
-        .plane:nth-child(2) svg { width: 26px; height: 26px; stroke: rgba(255, 255, 255, 0.4); }
+        .plane:nth-child(2) svg { width: 26px; height: 26px; stroke: rgba(22, 163, 74, 0.5); }
 
         .plane:nth-child(3) {
             animation-duration: 10s;
             animation-delay: -5s;
             top: 80%;
         }
-        .plane:nth-child(3) svg { width: 22px; height: 22px; stroke: rgba(255, 255, 255, 0.35); }
+        .plane:nth-child(3) svg { width: 22px; height: 22px; stroke: rgba(22, 163, 74, 0.4); }
 
         @keyframes flyAcross {
             0% {
@@ -240,24 +240,24 @@
             animation-delay: -1s;
             top: 35%;
         }
-        .plane.return:nth-child(4) svg { width: 28px; height: 28px; stroke: rgba(255, 255, 255, 0.45); }
+        .plane.return:nth-child(4) svg { width: 28px; height: 28px; stroke: rgba(22, 163, 74, 0.55); }
 
         .plane.return:nth-child(5) {
             animation-duration: 7s;
             animation-delay: -4s;
             top: 65%;
         }
-        .plane.return:nth-child(5) svg { width: 24px; height: 24px; stroke: rgba(255, 255, 255, 0.4); }
+        .plane.return:nth-child(5) svg { width: 24px; height: 24px; stroke: rgba(22, 163, 74, 0.45); }
 
         .co2-amount {
             font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 16px;
-            color: #fbbf24;
+            color: #16a34a;
         }
 
         .source-text {
             font-size: 0.85rem;
-            opacity: 0.6;
+            color: #888;
             margin-top: 32px;
             font-style: italic;
         }
@@ -272,21 +272,21 @@
         input {
             padding: 14px;
             font-size: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(0, 0, 0, 0.15);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: #f9f9f9;
+            color: #1a1a1a;
             transition: all 0.3s ease;
         }
 
         input:focus {
             outline: none;
-            border-color: #4ade80;
-            background: rgba(255, 255, 255, 0.15);
+            border-color: #22c55e;
+            background: #ffffff;
         }
 
         input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: #999;
         }
 
         .share-buttons {
@@ -317,7 +317,7 @@
         .counter-text {
             margin-top: 24px;
             font-size: 1.1rem;
-            color: #4ade80;
+            color: #16a34a;
             font-weight: 600;
         }
 
